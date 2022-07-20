@@ -117,6 +117,10 @@ showdown.subParser('makeMarkdown.node', function (node, options, globals, spansO
       txt = showdown.subParser('makeMarkdown.input')(node, options, globals);
       break;
 
+    case 'span':
+      txt = showdown.subParser('makeMarkdown.span')(node, options, globals);
+      break;
+
     default:
       txt = node.outerHTML + '\n\n';
   }

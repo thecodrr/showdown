@@ -5555,6 +5555,10 @@ showdown.subParser('makeMarkdown.node', function (node, options, globals, spansO
       txt = showdown.subParser('makeMarkdown.input')(node, options, globals);
       break;
 
+    case 'span':
+      txt = showdown.subParser('makeMarkdown.span')(node, options, globals);
+      break;
+
     default:
       txt = node.outerHTML + '\n\n';
   }
@@ -5588,6 +5592,12 @@ showdown.subParser('makeMarkdown.pre', function (node, options, globals) {
 
   var num  = node.getAttribute('prenum');
   return '<pre>' + globals.preList[num] + '</pre>';
+});
+
+showdown.subParser('makeMarkdown.span', function (node) {
+  'use strict';
+
+  return node.innerHTML;
 });
 
 showdown.subParser('makeMarkdown.strikethrough', function (node, options, globals) {
