@@ -9,11 +9,11 @@ if (!showdown.hasOwnProperty('helper')) {
 if (typeof this === 'undefined' && typeof window !== 'undefined') {
   showdown.helper.document = window.document;
 } else {
-  if (typeof this.document === 'undefined' && typeof this.window === 'undefined') {
-    var jsdom = require('jsdom');
-    this.window = new jsdom.JSDOM('', {}).window; // jshint ignore:line
-  }
-  showdown.helper.document = this.window.document;
+  // if (typeof this.document === 'undefined' && typeof this.window === 'undefined') {
+  //   var jsdom = require('jsdom');
+  //   this.window = new jsdom.JSDOM('', {}).window; // jshint ignore:line
+  // }
+  // showdown.helper.document = this.window.document;
 }
 
 /**
