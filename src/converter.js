@@ -416,32 +416,29 @@ showdown.Converter = function (converterOptions) {
 
       for (var i = 0; i < pres.length; ++i) {
 
-        if (pres[i].childElementCount === 1 && pres[i].firstChild.tagName.toLowerCase() === 'code') {
-          var content = pres[i].firstChild.innerHTML.trim(),
-              language = pres[i].firstChild.getAttribute('data-language') || '';
+        const isCode = pres[i].childElementCount === 1 && pres[i].firstChild.tagName.toLowerCase() === 'code';
+        const codeElement = isCode ? pres[i].firstElementChild : pres[i];
 
-          // if data-language attribute is not defined, then we look for class language-*
-          if (language === '') {
-            var classes = pres[i].firstChild.className.split(' ');
-            for (var c = 0; c < classes.length; ++c) {
-              var matches = classes[c].match(/^language-(.+)$/);
-              if (matches !== null) {
-                language = matches[1];
-                break;
-              }
+        var content = codeElement.innerHTML.replace(/<br>|<br\/>/gm, '\n').trim(),
+            language = codeElement.getAttribute('data-language') || '';
+
+        // if data-language attribute is not defined, then we look for class language-*
+        if (language === '') {
+          var classes = [pres[i].className, codeElement.className].join(' ').split(' ');
+          for (var c = 0; c < classes.length; ++c) {
+            var matches = classes[c].match(/^language-(.+)$/);
+            if (matches !== null) {
+              language = matches[1];
+              break;
             }
           }
-
-          // unescape html entities in content
-          content = showdown.helper.unescapeHTMLEntities(content);
-
-          presPH.push(content);
-          pres[i].outerHTML = '<precode language="' + language + '" precodenum="' + i.toString() + '"></precode>';
-        } else {
-          presPH.push(pres[i].innerHTML);
-          pres[i].innerHTML = '';
-          pres[i].setAttribute('prenum', i.toString());
         }
+
+        // unescape html entities in content
+        content = showdown.helper.unescapeHTMLEntities(content);
+
+        presPH.push(content);
+        pres[i].outerHTML = '<precode language="' + language + '" precodenum="' + i.toString() + '"></precode>';
       }
       return presPH;
     }
