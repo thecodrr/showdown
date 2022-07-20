@@ -6,6 +6,10 @@ showdown.subParser('makeMarkdown.listItem', function (node, options, globals) {
   var children = node.childNodes,
       childrenLenght = children.length;
 
+  if (node.classList.contains('checklist--item')) {
+    listItemTxt += node.classList.contains('checked') ? '[x] ' : '[ ] ';
+  }
+
   for (var i = 0; i < childrenLenght; ++i) {
     listItemTxt += showdown.subParser('makeMarkdown.node')(children[i], options, globals);
   }
