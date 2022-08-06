@@ -1,4 +1,4 @@
-;/*! showdown v 3.0.0-alpha - 20-07-2022 */
+;/*! showdown v 3.0.0-alpha - 06-08-2022 */
 (function(){
 /**
  * Created by Tivie on 13-07-2015.
@@ -5805,7 +5805,7 @@ showdown.subParser('makeMarkdown.tableCell', function (node, options, globals) {
       childrenLength = children.length;
 
   for (var i = 0; i < childrenLength; ++i) {
-    txt += showdown.subParser('makeMarkdown.node')(children[i], options, globals, true);
+    txt += showdown.subParser('makeMarkdown.node')(children[i], options, globals, false);
   }
   return txt.trim();
 });
