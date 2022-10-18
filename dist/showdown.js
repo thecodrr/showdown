@@ -1,4 +1,4 @@
-;/*! showdown v 3.0.0-alpha - 06-08-2022 */
+;/*! showdown v 3.0.0-alpha - 18-10-2022 */
 (function(){
 /**
  * Created by Tivie on 13-07-2015.
@@ -6272,7 +6272,7 @@ showdown.Converter = function (converterOptions) {
 
       for (var i = 0; i < pres.length; ++i) {
 
-        const isCode = pres[i].childElementCount === 1 && pres[i].firstChild.tagName.toLowerCase() === 'code';
+        const isCode = pres[i].childElementCount === 1 && pres[i].firstElementChild.tagName.toLowerCase() === 'code';
         const codeElement = isCode ? pres[i].firstElementChild : pres[i];
 
         var content = codeElement.innerHTML.replace(/<br>|<br\/>/gm, '\n').trim(),
