@@ -6,7 +6,8 @@ showdown.subParser('makeMarkdown.listItem', function (node, options, globals) {
   var children = node.childNodes,
       childrenLenght = children.length;
 
-  if (node.classList.contains('checklist--item')) {
+  if (node.classList.contains('checklist--item') ||
+      node.classList.contains('simple-checklist--item')) {
     listItemTxt += node.classList.contains('checked') ? '[x] ' : '[ ] ';
   }
 
