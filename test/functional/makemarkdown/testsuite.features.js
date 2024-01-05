@@ -5,7 +5,8 @@ var bootstrap = require('./makemarkdown.bootstrap.js'),
     showdown = bootstrap.showdown,
     assertion = bootstrap.assertion,
     issues = bootstrap.getTestSuite('test/functional/makemarkdown/cases/features/issues/'),
-    ghMentions = bootstrap.getTestSuite('test/functional/makemarkdown/cases/features/ghMentions/');
+    ghMentions = bootstrap.getTestSuite('test/functional/makemarkdown/cases/features/ghMentions/'),
+    underline = bootstrap.getTestSuite('test/functional/makemarkdown/cases/features/underline/');
 
 describe('makeMarkdown() features testsuite', function () {
   'use strict';
@@ -26,6 +27,13 @@ describe('makeMarkdown() features testsuite', function () {
     var converter = new showdown.Converter({ ghMentions: true });
     for (var i = 0; i < ghMentions.length; ++i) {
       it(ghMentions[i].name.replace(/-/g, ' '), assertion(ghMentions[i], converter));
+    }
+  });
+
+  describe('underline', function () {
+    var converter = new showdown.Converter({ underline: true });
+    for (var i = 0; i < underline.length; ++i) {
+      it(underline[i].name.replace(/-/g, ' '), assertion(underline[i], converter));
     }
   });
 });

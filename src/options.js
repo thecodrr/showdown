@@ -66,6 +66,11 @@ function getDefaultOpts (simple) {
       describe: 'Turn on/off strikethrough support',
       type: 'boolean'
     },
+    underline: {
+      defaultValue: false,
+      describe: 'Turn on/off strikethrough support',
+      type: 'boolean'
+    },
     tables: {
       defaultValue: false,
       describe: 'Turn on/off tables support',
