@@ -49,7 +49,10 @@ showdown.subParser('makeMarkdown.node', function (node, options, globals, spansO
       break;
 
     case 'p':
-      if (!spansOnly) { txt = showdown.subParser('makeMarkdown.paragraph')(node, options, globals) + '\n\n'; }
+      if (!spansOnly) {
+        txt = showdown.subParser('makeMarkdown.paragraph')(node, options, globals);
+        txt += node.getAttribute('data-spacing') === 'single' ? '\n' : '\n\n';
+      }
       break;
 
     case 'blockquote':
