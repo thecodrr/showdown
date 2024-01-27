@@ -50,8 +50,20 @@ showdown.subParser('makeMarkdown.node', function (node, options, globals, spansO
 
     case 'p':
       if (!spansOnly) {
+        const isSingleSpaced = node.getAttribute('data-spacing') === 'single';
+        const isNextNodeSingleSpaced = node.nextSibling && node.nextSibling.getAttribute && node.nextSibling.getAttribute('data-spacing') === 'single';
+        const isInsideListItem = !!node.closest('li');
+        const isFirst = node.parentElement && node.parentElement.firstChild === node;
         txt = showdown.subParser('makeMarkdown.paragraph')(node, options, globals);
-        txt += node.getAttribute('data-spacing') === 'single' ? '\n' : '\n\n';
+        if (isInsideListItem && isSingleSpaced && isFirst) {
+          txt += '\n';
+        } else if (isSingleSpaced && !isNextNodeSingleSpaced) {
+          txt += '\n\n';
+        } else if (isNextNodeSingleSpaced) {
+          txt += '  \n';
+        } else {
+          txt += '\n\n';
+        }
       }
       break;
 
