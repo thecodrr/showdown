@@ -69,3 +69,5 @@ foo**bar**baz
 foo**bar**baz
 
 this is **[imbued link with strong](<//google.com>)**
+
+text wrapped in span **with bold sentence** in middle
