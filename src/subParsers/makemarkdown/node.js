@@ -122,6 +122,9 @@ showdown.subParser('makeMarkdown.node', function (node, options, globals, spansO
 
     case 'img':
       txt = showdown.subParser('makeMarkdown.image')(node, options, globals);
+      if (node.nextSibling || node.prevSibling) {
+        txt += '\n\n';
+      }
       break;
 
     case 'br':
