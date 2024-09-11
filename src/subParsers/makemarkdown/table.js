@@ -93,7 +93,7 @@ showdown.subParser('makeMarkdown.table',
     headings = rows.shift();
 
     for (i = 0; i < headings.length; ++i) {
-      var headContent = showdown.subParser('makeMarkdown.tableCell')(headings[i], globals),
+      var headContent = showdown.subParser('makeMarkdown.tableCell')(headings[i],options, globals),
           align = '---';
 
       if (headings[i].hasAttribute('style')) {
@@ -123,7 +123,7 @@ showdown.subParser('makeMarkdown.table',
         if (typeof rows[i][ii] !== 'undefined') {
           // Note: if rows[i][ii] is undefined, it means the row has fewer elements than the header,
           // and empty content will be added
-          cellContent = showdown.subParser('makeMarkdown.tableCell')(rows[i][ii], globals);
+          cellContent = showdown.subParser('makeMarkdown.tableCell')(rows[i][ii], options, globals);
         }
         tableArray[r].push(cellContent);
       }
